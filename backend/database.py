@@ -17,6 +17,9 @@ if DATABASE_URL:
         DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+pg8000://", 1)
     elif DATABASE_URL.startswith("postgresql://"):
         DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+pg8000://", 1)
+    
+    # Hapus parameter pgbouncer yang bisa bikin pg8000 error
+    DATABASE_URL = DATABASE_URL.replace("?pgbouncer=true", "")
 
 engine = create_engine(
     DATABASE_URL,
