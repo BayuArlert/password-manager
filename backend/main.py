@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -18,7 +19,8 @@ app = FastAPI(
     title="Password Manager API",
     description="Secure password manager with AES-256 encryption",
     version="1.0.0",
-    lifespan=lifespan
+    lifespan=lifespan,
+    root_path="/api" if os.getenv("VERCEL") else ""
 )
 
 # CORS configuration

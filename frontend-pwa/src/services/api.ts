@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-// Backend API URL
 const API_URL = import.meta.env.PROD
-    ? 'https://agungbayu.pythonanywhere.com'
+    ? '/api'
     : 'http://localhost:8000';
 
 const api = axios.create({
