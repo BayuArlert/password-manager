@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export const Logo = ({ size = 80 }: { size?: number }) => {
     return (
