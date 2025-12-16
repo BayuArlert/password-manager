@@ -11,7 +11,7 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
       manifest: {
         name: 'Password Manager',
-        short_name: 'PwdMgr',
+        short_name: 'Password Manager',
         description: 'Secure password manager with pixel art theme',
         theme_color: '#8B7EC3',
         background_color: '#F5F3FF',
