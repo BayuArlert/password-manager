@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "backend/main.py": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
