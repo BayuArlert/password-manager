@@ -1,10 +1,12 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load .env dari folder yang sama dengan file ini
+env_path = Path(__file__).parent / '.env'
+load_dotenv(dotenv_path=env_path)
 
 DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://root:@localhost:3306/password_manager")
 
