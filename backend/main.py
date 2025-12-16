@@ -11,8 +11,11 @@ from routes import auth, passwords, categories, history
 async def lifespan(app: FastAPI):
     # Startup: Initialize database
     print("🚀 Initializing database...")
-    init_db()
-    print("✅ Database initialized!")
+    try:
+        init_db()
+        print("✅ Database initialized!")
+    except Exception as e:
+        print(f"❌ Database init failed: {e}")
     yield
     # Shutdown
     print("👋 Shutting down...")
