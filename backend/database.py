@@ -11,9 +11,12 @@ load_dotenv(dotenv_path=env_path)
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./local.db")
 
-# Fix untuk Supabase/Vercel: SQLAlchemy butuh 'postgresql://' bukan 'postgres://'
-if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+# Fix untuk Supabase/Vercel: Gunakan driver pg8000 (Pure Python)
+if DATABASE_URL:
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql+pg8000://", 1)
+    elif DATABASE_URL.startswith("postgresql://"):
+        DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+pg8000://", 1)
 
 engine = create_engine(
     DATABASE_URL,

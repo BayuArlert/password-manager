@@ -55,6 +55,28 @@ def read_root():
 def health_check():
     return {"status": "healthy"}
 
+@app.get("/debug_env")
+def debug_env():
+    import os
+    status = {"status": "debug"}
+    
+    # Cek Library
+    try:
+        import pg8000
+        status["pg8000"] = "installed ✅"
+    except ImportError as e:
+        status["pg8000"] = f"MISSING ❌: {e}"
+
+    # Cek ENV
+    db_url = os.getenv("DATABASE_URL", "NOT_SET")
+    if db_url == "NOT_SET":
+        status["env_db"] = "MISSING ❌"
+    else:
+        # Tampilkan 15 karakter awal saja demi keamanan
+        status["env_db"] = f"FOUND ✅: {db_url[:15]}..."
+        
+    return status
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
